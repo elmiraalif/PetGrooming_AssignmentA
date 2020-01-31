@@ -13,7 +13,7 @@ namespace PetGrooming.Models
     {
 
         [Key]
-        public int SpeciesID { get; set; }
+        public int SpeciesId { get; set; }
 
         public string Name { get; set; }
 

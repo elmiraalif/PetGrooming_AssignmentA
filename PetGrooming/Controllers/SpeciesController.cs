@@ -33,9 +33,30 @@ namespace PetGrooming.Controllers
             return View(myspecies);
         }
 
+        //Add method:
+            //This is for the URL of the page Add: /Species/Add
+            public ActionResult Add()
+            {
+                return View();
+            }
+            //HttpPost for the method Add
+            [HttpPost]
+            public ActionResult Add(string SpeciesName)
+            {
+                //A message which shows that we are gathering data for Species
+                Debug.WriteLine("Gathering Species Name of " + SpeciesName);
+                //To Create a query
+                string query = "INSERT INTO Species VALUES (@SpeciesName)";
+                //To Run the Query
+                SqlParameter sqlparam = new SqlParameter("@SpeciesName", SpeciesName);
+                db.Database.ExecuteSqlCommand(query, sqlparam);
+                //Redirect the page to the list of Species
+                return RedirectToAction("List");
+            }
+        //end of Add method
+
         // Show
-        // Add
-        // [HttpPost] Add
+
         // Update
         // [HttpPost] Update
         // (optional) delete
