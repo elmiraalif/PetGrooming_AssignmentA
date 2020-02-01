@@ -73,32 +73,45 @@ namespace PetGrooming.Controllers
 
 
         //Update method
-        public ActionResult Update(int id)
-        {
-            string query = "SELECT * FROM species Where speciesId = @id ";
-            SqlParameter sqlparam = new SqlParameter("@id", id);
-            //First or Default to pick the first result of the result set
-            Species selectedSpecies = db.Species.SqlQuery(query, sqlparam).FirstOrDefault();
-            return View(selectedSpecies);
-        }
+            public ActionResult Update(int id)
+            {
+                string query = "SELECT * FROM species Where speciesId = @id ";
+                SqlParameter sqlparam = new SqlParameter("@id", id);
+                //First or Default to pick the first result of the result set
+                Species selectedSpecies = db.Species.SqlQuery(query, sqlparam).FirstOrDefault();
+                return View(selectedSpecies);
+            }
 
-        [HttpPost]
-        public ActionResult Update(int id, string SpeciesName)
-        {
+            [HttpPost]
+            public ActionResult Update(int id, string speciesName)
+            {
 
-            string query = "update species set Name = @speciesName where speciesId = @id";
-            //we have two properties
-            SqlParameter[] sqlparams = new SqlParameter[2];
-            sqlparams[0] = new SqlParameter("@SpeciesName", SpeciesName);
-            sqlparams[1] = new SqlParameter("@id", id);
-            db.Database.ExecuteSqlCommand(query, sqlparams);
-            return RedirectToAction("List");
-        }
+                string query = "UPDATE species SET Name = @speciesName WHERE speciesId = @id";
+                //we have two properties
+                SqlParameter[] sqlparams = new SqlParameter[2];
+                sqlparams[0] = new SqlParameter("@SpeciesName", speciesName);
+                sqlparams[1] = new SqlParameter("@id", id);
+                db.Database.ExecuteSqlCommand(query, sqlparams);
+                return RedirectToAction("List");
+            }
         //end of update method
+            
 
+        //Delete Method
+            public ActionResult Delete(int id)
+            {
+                //Write the Query
+                string query = "DELETE FROM species WHERE speciesId = @id";
+                //sql Parameter
+                SqlParameter sqlparam = new SqlParameter("@id", id);
+                //Run the query
+                db.Database.ExecuteSqlCommand(query, sqlparam);
+                //Redirect to the list page
+                return RedirectToAction("List");
+            }
 
+        //end of Delete Method
 
-        // (optional) delete
-        // [HttpPost] Delete
+       
     }
 }
