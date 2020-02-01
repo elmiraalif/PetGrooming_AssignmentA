@@ -55,7 +55,19 @@ namespace PetGrooming.Controllers
             }
         //end of Add method
 
-        // Show
+        //Show Method
+        public ActionResult Show(int id)
+        {
+            //write the query
+            string query = "SELECT * FROM species WHERE speciesid = @id";
+            //sql parameter
+            SqlParameter sqlparam = new SqlParameter("@id", id);
+            Species selectedSpecies = db.Species.SqlQuery(query, sqlparam).FirstOrDefault();
+            return View(selectedSpecies);
+        }
+        //end of Show method
+
+
 
         // Update
         // [HttpPost] Update

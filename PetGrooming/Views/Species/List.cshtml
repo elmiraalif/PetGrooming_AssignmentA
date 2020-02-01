@@ -1,4 +1,5 @@
-﻿@model List<PetGrooming.Models.Species>
+﻿@using PetGrooming.Models
+@model List<PetGrooming.Models.Species>
 
 
 @{
@@ -9,8 +10,12 @@
 @{ 
     foreach (var species in @Model) {
 
-        <div>
-            @species.Name
-        </div>
+    <div>
+        @species.Name
+        
+        <a href="/Species/Delete"> Delete</a>
+        <a href="/Species/Show/@species.SpeciesId"> Details</a>
+    </div>
+        
     }
 }
