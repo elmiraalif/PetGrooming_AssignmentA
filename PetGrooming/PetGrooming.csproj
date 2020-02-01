@@ -234,6 +234,7 @@
     <Content Include="Views\Species\List.cshtml" />
     <Content Include="Views\Species\Show.cshtml" />
     <Content Include="Views\Species\Add.cshtml" />
+    <Content Include="Views\Species\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

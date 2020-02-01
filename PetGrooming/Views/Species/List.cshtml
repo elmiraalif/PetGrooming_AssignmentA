@@ -7,15 +7,23 @@
 }
 
 <h2>List of Species</h2>
-@{ 
-    foreach (var species in @Model) {
+<!--A button to add species-->
+<a href="/Species/Add">Add Species</a>
+@{
+    foreach (var species in @Model)
+    {
 
-    <div>
-        @species.Name
-        
-        <a href="/Species/Delete"> Delete</a>
-        <a href="/Species/Show/@species.SpeciesId"> Details</a>
-    </div>
-        
+        <div>
+            @species.Name
+
+            <!--Delete Button-->
+            <a href="/Species/Delete"> Delete</a>
+            <!--Show method: Details-->
+            <a href="/Species/Show/@species.SpeciesId"> Details</a>
+            <!--Update method: Edit-->
+            <a href="/Species/Update/@species.SpeciesId"> Edit</a>
+        </div>
+   
+
     }
 }
